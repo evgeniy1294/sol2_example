@@ -83,5 +83,21 @@ int main(int, char**) {
     )");
     printVector(reference_to_arr);
 
+    lua.script(R"(
+        function f (x)
+            print("container has:")
+                for k=1,#x do
+                    v = x[k]
+                    print("\t", k, v.azt, v.el, v.time)
+                end
+            print()
+        end
+
+        arr[2].azt = 113.0
+        arr[2].el  = 114.0
+        arr[2].time = 200.0
+        f(arr)
+    )");
+
     return 0;
 }
